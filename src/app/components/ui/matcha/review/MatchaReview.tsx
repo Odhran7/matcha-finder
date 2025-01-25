@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import AddReview from "./AddReview";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const MatchaReview = () => {
   return (
-    <div>MatchaReview</div>
-  )
-}
+    <Card>
+      <CardHeader>
+        <CardTitle>Add Review</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <AddReview />
+      </CardContent>
+    </Card>
+  );
+};
 
-export default MatchaReview
+export default MatchaReview;
