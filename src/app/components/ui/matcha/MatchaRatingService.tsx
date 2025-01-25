@@ -1,16 +1,14 @@
+'use client';
+
 import React from "react";
-import MatchaMap from "./map/MatchaMap";
-import MatchaReview from "./review/MatchaReview";
+import dynamic from "next/dynamic";
+const MatchaMap = dynamic(() => import("./map/MatchaMap"), { ssr: false });
+// import MatchaReview from "./review/MatchaReview";
 
 const MatchaRatingService = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 container mx-auto p-4 h-full">
-      <div className="lg:sticky lg:top-0 sm:h-[calc(100vh-200px)]">
+    <div className="h-full w-full">
         <MatchaMap/>
-      </div>
-      <div className="space-y-4">
-        <MatchaReview />
-      </div>
     </div>
   );
 };

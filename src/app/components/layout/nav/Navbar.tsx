@@ -8,7 +8,7 @@ const Navbar = () => {
             <SiCoffeescript color='#90EE90' size={55} />
             <p className='font-bold sm:text-2xl text-m text-matchaGreen'>Matcha Finder</p>
         </div>
-        <div className='font-semibold sm:text-l text-xs text-matchaGreen'>
+        <div className='font-semibold sm:text-2xl text-xs text-matchaGreen'>
             The best matcha in Ireland.
         </div>
     </nav>
