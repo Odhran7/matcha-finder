@@ -4,11 +4,11 @@ import { SiCoffeescript } from "react-icons/si"
 const Navbar = () => {
   return (
     <nav className='flex justify-between items-center px-3 pb-3 w-full border-b-2 border-matchaGreen tracking-wider'>
-        <div className='flex space-x-3 items-center cursor-pointer'>
+        <div className='flex sm:space-x-3 space-x-1 items-center cursor-pointer'>
             <SiCoffeescript color='#90EE90' size={55} />
-            <p className='font-bold text-2xl text-matchaGreen'>Matcha Finder</p>
+            <p className='font-bold sm:text-2xl text-m text-matchaGreen'>Matcha Finder</p>
         </div>
-        <div className='font-semibold text-l text-matchaGreen'>
+        <div className='font-semibold sm:text-l text-xs text-matchaGreen'>
             The best matcha in Ireland.
         </div>
     </nav>
