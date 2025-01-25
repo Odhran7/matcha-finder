@@ -7,7 +7,8 @@ if (!databaseUri) {
 
 export async function connectDb() {
     try {
-        return await mongoose.connect(databaseUri!);
+        const db =  await mongoose.connect(databaseUri!);
+        return db;
     } catch (error) {
         console.error('Database connection failed:', error);
         throw error;

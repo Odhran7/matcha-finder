@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
-import { connectDb } from "@/lib/mongodb"
-import { Review } from "@/lib/models/review";
+import { connectDb } from "@/lib/mongodb";
+import { Place } from "@/lib/models";
 
 export async function POST(req: Request) {
   try {
     await connectDb();
     const body = await req.json();
-    const review = await Review.create(body);
+    const existingPlace = await Place.findOne({
+      longitude: body.longitude,
+      latitude: body.latitude,
+    });
+
+    if (existingPlace) {
+      return NextResponse.json(
+        { error: "Place with these coordinates already exists" },
+        { status: 409 }
+      );
+    }
+    const review = await Place.create(body);
     return NextResponse.json(review);
   } catch (error) {
     return NextResponse.json(
@@ -19,7 +30,7 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     await connectDb();
-    const reviews = await Review.find({});
+    const reviews = await Place.find({});
     return NextResponse.json(reviews);
   } catch (error) {
     return NextResponse.json(
