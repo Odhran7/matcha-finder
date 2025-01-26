@@ -132,7 +132,7 @@ const AddPlace = () => {
         </Table>
       ) : (
         <p className="text-sm text-matchaGreen">
-          No search results add one manually by clicking on the map!
+          No search results!
         </p>
       )}
     </div>

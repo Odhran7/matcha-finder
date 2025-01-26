@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import { usePlaces } from "./hooks/usePlaces";
 import { Icon } from "leaflet";
 import useMapInstance from "./hooks/useMapInstance";
+import PlacePopup from "./place/PlacePopup";
 
 const MatchaMap = () => {
   const places = usePlaces();
@@ -40,8 +41,7 @@ const MatchaMap = () => {
             icon={customIcon}
           >
             <Popup>
-                <h3>{place.name}</h3>
-                {/* <p>Matcha: {getAverageRating(place._id)} / 10</p> */}
+                <PlacePopup id={place._id} name={place.name} />
             </Popup>
           </Marker>
         ))}

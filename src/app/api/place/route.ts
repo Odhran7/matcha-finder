@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     return NextResponse.json(review);
   } catch (error) {
     return NextResponse.json(
-      { error: `Failed to create review ${error}` },
+      { error: `Failed to create place ${error}` },
       { status: 500 }
     );
   }
@@ -34,7 +34,7 @@ export async function GET() {
     return NextResponse.json(reviews);
   } catch (error) {
     return NextResponse.json(
-      { error: `Failed to fetch reviews: ${error}` },
+      { error: `Failed to fetch places: ${error}` },
       { status: 500 }
     );
   }
