@@ -54,11 +54,11 @@ const PlacePopup = ({ id, name }: { id: string; name: string }) => {
   if (isError) return <div className="p-4 text-red-500">Error loading reviews</div>;
 
   return (
-    <div className="w-[500px]">
-      <div className="flex items-center justify-between p-4 border-b">
+    <div className="w-full sm:w-[500px]">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-b gap-4">
         <h2 className="text-xl font-bold">{name}</h2>
         <button
-          className="bg-matchaGreen hover:bg-matchaGreen/90 text-white px-4 py-2 rounded-lg shadow transition-colors"
+          className="w-full sm:w-auto bg-matchaGreen hover:bg-matchaGreen/90 text-white px-4 py-2 rounded-lg shadow transition-colors"
           onClick={() => openModal(<AddReview id={id} />)}
         >
           Add Review

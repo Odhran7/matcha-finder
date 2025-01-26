@@ -46,7 +46,7 @@ const MatchaMap = () => {
             position={[place.latitude, place.longitude]}
             icon={customIcon}
           >
-            <Popup className="w-[500px] max-w-[500px]">
+            <Popup className="w-[90vw] max-w-[500px] sm:w-[500px]">
               <PlacePopup id={place._id} name={place.name} />
             </Popup>
           </Marker>
