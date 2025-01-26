@@ -11,6 +11,20 @@ body {
   background: linear-gradient(45deg, rgba(144, 238, 144, 0.08), rgba(152, 203, 121, 0.05));
 }
 
+.leaflet-popup-content-wrapper {
+    width: 90vw;
+    max-width: 300px;
+  }
+
+  @media (max-width: 768px) {
+    .leaflet-popup-content-wrapper {
+      width: 80vw;
+      max-width: 250px;
+    }
+  }
+
+
+
 .leaflet-container {
   z-index: 0 !important;
 }

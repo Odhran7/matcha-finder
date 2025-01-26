@@ -12,7 +12,6 @@ const MatchaMap = () => {
   const places = usePlaces();
   const mapInstanceRef = useMapInstance();
 
-
   const customIcon = new Icon({
     iconUrl: "./matcha.png",
     iconSize: [25, 41],
@@ -46,12 +45,17 @@ const MatchaMap = () => {
             position={[place.latitude, place.longitude]}
             icon={customIcon}
           >
-            <Popup className="w-[90vw] max-w-[500px] sm:w-[500px]">
-              <PlacePopup id={place._id} name={place.name} />
+            <Popup
+              className="responsive-popup relative"
+              maxWidth={300}
+              minWidth={200}
+              autoPan={true}
+              autoPanPadding={[10, 10]}
+            >
+                <PlacePopup id={place._id} name={place.name} />
             </Popup>
           </Marker>
         ))}
-
       </MapContainer>
     </div>
   );
