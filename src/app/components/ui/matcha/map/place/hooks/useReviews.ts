@@ -1,19 +1,16 @@
-import { Review } from "@/types/Review";
-import { useState, useEffect } from "react";
+import useSWR from 'swr';
+import { Review } from '@/types/Review';
 
-interface useReviewProps {
-    id: string;
-}
-
-export const useReviews = ({ id }: useReviewProps) => {
-    const [reviews, setReviews] = useState<Review[]>([]);
-    useEffect(() => {
-        const getReviews = async () => {
-            const res = await fetch(`/api/review?id=${id}`);
-            const data = await res.json()
-            setReviews(data);
-        }
-        getReviews()
-    }, [id])
-    return reviews;
-}
+export function useReviews({ id }: { id: string }) {
+    const { data, error } = useSWR<Review[]>(`/api/review?id=${id}`, async (url: string) => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to fetch reviews');
+      return res.json();
+    });
+  
+    return {
+      reviews: data,
+      isLoading: !error && !data,
+      isError: error
+    };
+  }

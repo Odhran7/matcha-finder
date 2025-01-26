@@ -1,7 +1,10 @@
 export interface Review {
     _id: string;
     author: string;
-    rating: number;
+    overallRating: number;
+    tasteRating: number;
+    valueRating: number;
+    serviceRating: number;
     description: string;
     createdAt: Date;
 }

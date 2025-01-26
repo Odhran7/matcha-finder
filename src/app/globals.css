@@ -7,9 +7,17 @@ body {
 }
 
 .matcha-overlay {
-    filter: sepia(20%) hue-rotate(60deg) saturate(60%) brightness(98%);
-    background: linear-gradient(45deg, rgba(144, 238, 144, 0.08), rgba(152, 203, 121, 0.05));
-   }
+  filter: sepia(20%) hue-rotate(60deg) saturate(60%) brightness(98%);
+  background: linear-gradient(45deg, rgba(144, 238, 144, 0.08), rgba(152, 203, 121, 0.05));
+}
+
+.leaflet-container {
+  z-index: 0 !important;
+}
+
+.leaflet-popup {
+  z-index: 99 !important;
+}
 
 @layer base {
   :root {
@@ -39,6 +47,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -71,7 +80,16 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.leaflet-popup-content {
+  @apply !w-[600px] !m-0;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply !p-0;
 }

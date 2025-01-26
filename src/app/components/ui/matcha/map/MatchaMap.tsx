@@ -23,7 +23,7 @@ const MatchaMap = () => {
     <div className="h-full w-full">
       <MapContainer
         ref={mapInstanceRef}
-        className="rounded-xl shadow-md matcha-overlay"
+        className="rounded-xl shadow-md"
         center={[53.3498, -6.2603]}
         zoom={12}
         maxBounds={[
@@ -34,22 +34,24 @@ const MatchaMap = () => {
         minZoom={6}
         style={{ height: "100%", width: "100%" }}
       >
+        <TileLayer
+          className="matcha-overlay"
+          url="https://tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=whqqYa5LCMyqqgYbAJEXEUWstheh0K7eVsauDYzrWzJGAgNunjnNQKSctGUpljD6"
+          attribution='<a href="https://jawg.io">&copy; Jawg</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          maxZoom={22}
+        />
         {places.map((place) => (
           <Marker
             key={place._id}
             position={[place.latitude, place.longitude]}
             icon={customIcon}
           >
-            <Popup>
-                <PlacePopup id={place._id} name={place.name} />
+            <Popup className="w-[500px] max-w-[500px]">
+              <PlacePopup id={place._id} name={place.name} />
             </Popup>
           </Marker>
         ))}
-        <TileLayer
-          url="https://tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=whqqYa5LCMyqqgYbAJEXEUWstheh0K7eVsauDYzrWzJGAgNunjnNQKSctGUpljD6"
-          attribution='<a href="https://jawg.io">&copy; Jawg</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          maxZoom={22}
-        />
+
       </MapContainer>
     </div>
   );

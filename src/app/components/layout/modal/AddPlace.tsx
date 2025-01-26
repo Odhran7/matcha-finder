@@ -71,7 +71,7 @@ const AddPlace = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Add New Place</h2>
+      <h2 className="text-xl text-matchaGreen font-bold mb-4">Add New Place</h2>
       <form onSubmit={handleSubmit} className="space-y-4 mb-5">
         <div>
           <label className="block mb-2">Address</label>

@@ -12,13 +12,21 @@ const PlaceSchema = new mongoose.Schema(
 
 const ReviewSchema = new mongoose.Schema(
   {
+    placeId: { type: mongoose.Schema.Types.ObjectId, ref: "Place", required: true },
     author: { type: String, required: true, default: "anonymous" },
-    rating: { type: Number, required: true },
+    tasteRating: { type: Number, required: true, min: 0, max: 10 },
+    valueRating: { type: Number, required: true, min: 0, max: 10 },
+    serviceRating: { type: Number, required: true, min: 0, max: 10 },
     description: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
   },
-  { collection: "Review" }
+  { collection: "Review", toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+ReviewSchema.virtual('overallRating').get(function() {
+  return ((this.tasteRating + this.valueRating + this.serviceRating) / 30) * 10;
+});
+
 
 export const Place =
   mongoose.models.Place || mongoose.model("Place", PlaceSchema);
