@@ -33,7 +33,7 @@ const reviewFormSchema = z.object({
   }).max(10, {
     message: "Must be less than 10"
   }),
-  description: z.string().min(2).max(50),
+  description: z.string().min(0).max(150),
 });
 interface AddReviewProps {
   id: string;
