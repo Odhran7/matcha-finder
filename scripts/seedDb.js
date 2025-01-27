@@ -22,7 +22,6 @@ const PlaceSchema = new mongoose.Schema(
 const Place = mongoose.models.Place || mongoose.model("Place", PlaceSchema);
 
 const MONGODB_URI = process.env.DATABASE_URI;
-console.log(MONGODB_URI)
 
 const importPlaces = async () => {
   const places = JSON.parse(fs.readFileSync(path.join(__dirname, './matcha_locs.json'), 'utf8'));

@@ -11,6 +11,7 @@ export async function POST(req: Request) {
       latitude: body.latitude,
     });
 
+
     if (existingPlace) {
       return NextResponse.json(
         { error: "Place with these coordinates already exists" },

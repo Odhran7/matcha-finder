@@ -27,10 +27,13 @@ const AddPlace = () => {
 
   const handleClick = async (
     name: string,
-    longitude: number,
-    latitude: number
+    latitude: number,
+    longitude: number
   ) => {
     try {
+      if (!name) {
+        name = address;
+      }
       const response = await fetch("/api/place", {
         method: "POST",
         headers: {
@@ -53,7 +56,9 @@ const AddPlace = () => {
 
     try {
       const response = await fetch(
-        `/api/geocode?address=${encodeURIComponent(address + ", Ireland")}`
+        `/api/geocode?address=${encodeURIComponent(
+          address + "Dublin, Ireland"
+        )}`
       );
       const data = await response.json();
 
@@ -131,9 +136,7 @@ const AddPlace = () => {
           </TableBody>
         </Table>
       ) : (
-        <p className="text-sm text-matchaGreen">
-          No search results!
-        </p>
+        <p className="text-sm text-matchaGreen">No search results!</p>
       )}
     </div>
   );
