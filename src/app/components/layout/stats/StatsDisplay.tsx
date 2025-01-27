@@ -1,8 +1,8 @@
 import React from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Star, ArrowUp, Users, LucideIcon } from "lucide-react";
-import { getHighestRatedPlace, getTopRatedPlaces } from '@/app/actions/matchaStatsActions';
+import { Star, ArrowUp, ClipboardList, LucideIcon } from "lucide-react";
+import { getHighestRatedPlace, getTopRatedPlaces, getTotalReviews } from '@/app/actions/matchaStatsActions';
 
 interface StatItem {
   icon: LucideIcon;
@@ -35,8 +35,12 @@ const StatCard = ({ icon: Icon, label, value, subValue }: StatItem) => (
 );
 
 const StatsDisplay = async () => {
-  const highestRated = await getHighestRatedPlace();
-  const topPlaces = await getTopRatedPlaces(3);
+  const [highestRated, topPlaces, reviewStats] = await Promise.all([
+    getHighestRatedPlace(),
+    getTopRatedPlaces(3),
+    getTotalReviews()
+  ]);
+
   const stats: StatItem[] = [
     {
       icon: Star,
@@ -45,16 +49,18 @@ const StatsDisplay = async () => {
       subValue: highestRated ? `${highestRated.overallRating.toFixed(1)}/10` : undefined
     },
     {
-      icon: Users,
+      icon: ClipboardList,
       label: "Most Reviewed",
       value: topPlaces?.[0]?.name || "No reviews yet",
       subValue: topPlaces?.[0] ? `${topPlaces[0].reviewCount} reviews` : undefined
     },
     {
       icon: ArrowUp,
-      label: "Trending",
-      value: topPlaces?.[1]?.name || "Not enough data",
-      subValue: topPlaces?.[1] ? `${topPlaces[1].overallRating.toFixed(1)}/10` : undefined
+      label: "Total Reviews",
+      value: reviewStats.totalReviews,
+      subValue: reviewStats.averageOverallRating
+        ? `${reviewStats.averageOverallRating.toFixed(1)} avg rating`
+        : undefined
     }
   ];
 

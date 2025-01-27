@@ -5,7 +5,8 @@ import Navbar from "./components/layout/nav/Navbar";
 import Footer from "./components/layout/footer/Footer";
 import { ModalProvider } from "./contexts/Modal/ModalContext";
 import Modal from "./components/layout/modal/Modal";
-import StatsDisplay from "./components/layout/stats/StatsDisplay";
+import { Suspense } from 'react';
+import StatsDisplay, { StatsDisplayLoading } from './components/layout/stats/StatsDisplay';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +35,12 @@ export default function RootLayout({
       >
         <ModalProvider>
           <Navbar />
-          <StatsDisplay />
+          <Suspense fallback={<StatsDisplayLoading />}>
+            <StatsDisplay />
+          </Suspense>
           <main className="flex-1 p-4">{children}</main>
           <Modal />
           <Footer />
-
         </ModalProvider>
       </body>
     </html>
