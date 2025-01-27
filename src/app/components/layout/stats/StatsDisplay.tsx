@@ -11,7 +11,6 @@ interface StatItem {
   subValue?: string;
 }
 
-// Create a loading state version of StatCard
 const StatCardSkeleton = () => (
   <div className="flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-matchaGreen/10 rounded-lg animate-pulse">
     <div className="h-6 w-6 bg-matchaGreen/20 rounded" />
@@ -36,11 +35,8 @@ const StatCard = ({ icon: Icon, label, value, subValue }: StatItem) => (
 );
 
 const StatsDisplay = async () => {
-  // Fetch data
   const highestRated = await getHighestRatedPlace();
   const topPlaces = await getTopRatedPlaces(3);
-
-  // Prepare stats with actual data
   const stats: StatItem[] = [
     {
       icon: Star,
